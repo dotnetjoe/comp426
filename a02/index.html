@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="custom_style.css"/>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
     <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
     <title>Assignment 2</title>
 </head>
 <body>
-<section class="">
+<section class="hero is-dark is-fullheight">
     <div class="hero-body">
-        <div class="">
-            <h1 class="">
+        <div class="container">
+            <h1 class="title">
                 Comp426
             </h1>
-            <h2 class="">
+            <h2 class="subtitle">
                 A web development class
             </h2>
         </div>
@@ -24,7 +25,7 @@
     <div class="container">
         <div class="content">
             <h1 class="title">CSS Frameworks</h1>
-            <h5 class="">How to use a framework effectively</h5>
+            <h5 class="subtitle has-text-grey">How to use a framework effectively</h5>
             <p>When it comes to developing websites, design can be a very fun aspect. But in reality we often don't want
                 to spend hours writing CSS.
                 Aspects of good design (consistent theming, mobile friendly, and good typography) are tedious to manage
@@ -41,7 +42,7 @@
 
                 <br/>
                 <br/>
-                <span class="">chikezie ejiasi</span>
+                <span class="is-capitalized">chikezie ejiasi</span>
             </blockquote>
             <p>Now something to be careful of is making every site you make look identical. This is a common problem
                 with websites today.
@@ -57,34 +58,34 @@
 </section>
 
 <section class="section has-background-white">
-    <div class="">
+    <div class="container">
         <div class="content">
             <h1 class="title has-text-weight-bold">Consistency is Key</h1>
-            <h5 class="subtitle">Elements on a web page should be related and follow
+            <h5 class="subtitle has-text-grey has-text-weight-bold">Elements on a web page should be related and follow
                 the same theme</h5>
             <p>For the sake of readability and user experience you should try to keep you styling similar throughout the
                 page.</p>
         </div>
         <hr/>
-        <div class="">
-            <h1 class="">Consistency is Key</h1>
-            <h5 class="">Elements on a web page should be related and
+        <div class="content has-text-centered">
+            <h1 class="title has-text-weight-normal">Consistency is Key</h1>
+            <h5 class="subtitle has-text-grey has-text-weight-normal">Elements on a web page should be related and
                 follow the same theme</h5>
             <p>Remember that everything on a web page has a relationship with the other content.</p>
 
         </div>
         <hr/>
 
-        <div class="">
-            <h1 class="">Consistency is Key</h1>
-            <h5 class="">Elements on a web page should be related and follow
+        <div class="content has-text-right">
+            <h1 class="title has-text-weight-light">Consistency is Key</h1>
+            <h5 class="subtitle has-text-grey has-text-weight-light">Elements on a web page should be related and follow
                 the same theme</h5>
             <p>So content that goes together should have a stylistic (color/size/background/container) relationship.</p>
 
         </div>
         <hr/>
-        <div class="">
-            <p><span class="">Warning! </span>Even with a framework you can still make mistakes!</p>
+        <div class="notification is-danger">
+            <p><span class="has-text-weight-bold">Warning! </span>Even with a framework you can still make mistakes!</p>
         </div>
 
     </div>
@@ -92,19 +93,19 @@
 
 <section class="section">
     <div class="container">
-        <div class="">
-            <h1 class="">Flavour</h1>
-            <h5 class="">Express yourself with fonts, colors, images, and more</h5>
+        <div class="content has-text-centered">
+            <h1 class="title has-text-info is-family-secondary">Flavour</h1>
+            <h5 class="subtitle has-text-grey is-italic">Express yourself with fonts, colors, images, and more</h5>
         </div>
-        <div class="">
+        <div class="tabs is-medium is-centered">
             <ul>
-                <li class=""><a>Pictures</a></li>
+                <li class="is-active"><a>Pictures</a></li>
                 <li><a>Music</a></li>
                 <li><a>Videos</a></li>
                 <li><a>Documents</a></li>
             </ul>
         </div>
-        <div class="">
+        <div class="columns is-multiline justify-center">
             <div class="column">
                 <img src="images/all-01.jpg">
             </div>
@@ -122,13 +123,13 @@
     </div>
 </section>
 
-<section class="">
-    <div class="">
+<section class="section has-background-white">
+    <div class="container">
         <div class="content">
-            <div class="">
+            <div class="columns">
                 <div class="column">
-                    <h1 class="">Hierarchy</h1>
-                    <h5 class="">Order of importance of each element</h5>
+                    <h1 class="title">Hierarchy</h1>
+                    <h5 class="subtitle has-text-grey">Order of importance of each element</h5>
                     <p>When it comes to design and specifically typography (which is a massive part of web design), you
                         want
                         your content to be readable. This means that when someone looks at it, they intuitively know
@@ -140,9 +141,9 @@
                         Size is not the only way to define hierarchy – it can also be achieved with colour, spacing and
                         weight.</p>
                 </div>
-                <div class="">
-                    <h1 class="">Measure</h1>
-                    <h5 class="">The width of a line of text</h5>
+                <div class="column">
+                    <h1 class="title">Measure</h1>
+                    <h5 class="subtitle has-text-grey">The width of a line of text</h5>
                     <p>The term 'measure' describes the width of a text block. If you're seeking to achieve the optimum
                         reading experience,
                         it's clearly an important consideration. If your lines are too long, your reader can easily get
@@ -159,11 +160,11 @@
         </div>
     </div>
 </section>
-<section class="">
+<section class="section">
     <div class="container">
-        <div class="">
+        <div class="columns">
             <div class="column">
-                <h1 class="">Login</h1>
+                <h1 class="title">Login</h1>
                 <form>
                     <div class="field">
                         <label class="label">Username</label>
@@ -171,53 +172,53 @@
                             <input class="input" type="text" placeholder="Cookie Monster" name="username">
                         </div>
                     </div>
-                    <div class="">
-                        <label class="">Password</label>
-                        <div class="">
-                            <input class="" type="password" placeholder="password123" name="password">
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="password" placeholder="password123" name="password">
                         </div>
                     </div>
-                    <div class="">
-                        <div class="">
+                    <div class="field">
+                        <div class="control">
                             <label class="checkbox">
                                 <input type="checkbox" name="remember">
                                 Remember login?
                             </label>
                         </div>
                     </div>
-                    <div class="">
-                        <div class="">
-                            <input class="" type="submit"/>
+                    <div class="field">
+                        <div class="control">
+                            <input class="button is-dark" type="submit"/>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="">
-                <h1 class="">Signup</h1>
+            <div class="column">
+                <h1 class="title">Signup</h1>
                 <form>
-                    <div class="">
-                        <label class="">Username</label>
-                        <div class="">
-                            <input class="" type="text" placeholder="Cookie Monster 2.0" name="username">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Cookie Monster 2.0" name="username">
                         </div>
                     </div>
-                    <div class="">
-                        <label class="">Password</label>
-                        <div class="">
-                            <input class="" type="password" placeholder="password12345">
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="password" placeholder="password12345">
                         </div>
                     </div>
-                    <div class="">
-                        <label class="">Repeat Password</label>
-                        <div class="">
+                    <div class="field">
+                        <label class="label">Repeat Password</label>
+                        <div class="control">
                             <input class="input" type="password" placeholder="password12345" name="password">
                         </div>
                     </div>
 
-                    <div class="">
-                        <label class="">Account type</label>
-                        <div class="">
-                            <div class="">
+                    <div class="field">
+                        <label class="label">Account type</label>
+                        <div class="control">
+                            <div class="select">
                                 <select name="accountType">
                                     <option>Student</option>
                                     <option>Teacher</option>
@@ -226,9 +227,9 @@
                         </div>
                     </div>
 
-                    <div class="">
-                        <div class="">
-                            <input class="" type="submit"/>
+                    <div class="field">
+                        <div class="control">
+                            <input class="button is-dark" type="submit"/>
                         </div>
                     </div>
                 </form>

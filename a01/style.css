@@ -1,0 +1,77 @@
+body {
+    margin:30px;
+    padding:8px 4px 12px 4px;
+    color:#11ff11;
+    background-color:#000000;
+    font-size: 20px;
+    border-style: solid;
+}
+
+h1 {
+    margin:30px;
+    padding:8px 4px 12px 4px;
+    color:#ffb300;
+    background-color:#000000;
+    font-size: 40px;
+    font-family: "San Francisco";
+    height: 50px;
+    width: 100px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3{
+    font-size: 20px;
+    text-indent: 25px;
+}
+
+.colleges {
+    font-size: 15px;
+    text-indent: 50px;
+}
+
+#current {
+    color: lightblue;
+}
+
+.mascot {
+    color: grey;
+}
+
+.mascot .betterMascot {
+    font-style: italic;
+}
+
+h4 {
+    font-size: 16px;
+    background-color:#000000;
+    text-indent: 60px;
+}
+
+p {
+    margin:30px;
+    padding:8px 4px 12px 4px;
+    color: #00ffff;
+    background-color:#000000;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+a:link {
+    color: #FF0000;
+}
+
+a:visited {
+    color: #00FF00;
+}
+
+a:hover {
+    color: #FF00FF;
+}
+
+a:active {
+    color: #0000FF;
+}
+

@@ -2,7 +2,6 @@
   "name": "a03",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
   "main": " test.js",
   "scripts": {
     "mild_1": "node -r esm src/mild/mild_1.js",
@@ -16,5 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "esm": "^3.2.25"
-  }
+  },
+  "description": ""
 }
