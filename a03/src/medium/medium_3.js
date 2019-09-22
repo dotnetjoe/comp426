@@ -72,5 +72,5 @@ export function searchByYear(car_data, years) {
             if (car.year == years[i]) return true
         }
         return false;
-    }).sort((a,b) => b.year -na.year);
+    }).sort((a,b) => b.year - a.year);
 }
