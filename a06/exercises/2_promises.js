@@ -13,12 +13,30 @@ import {heroData} from "./data";
  * @returns {Promise<object>}
  */
 export function getHeroByIdPromise(heroData, id) {
+    let thisHero=null;
 
+    heroData.forEach( a => {
+        if(a.id == id){
+            thisHero = a;
+        }
+    });
+
+    return new Promise(((resolve, reject) => {
+    // Resolve is used as a callback on a success
+    // Reject is used as a callback on a failure
+        setTimeout(() => {
+            if (thisHero == null) {
+            reject(`No hero.`);
+        } else {
+            resolve(thisHero);
+            }
+        }, 1500);
+    }));
 }
 
 
-/*
-Below is code to help you get the right solution.
+
+// Below is code to help you get the right solution.
 
 const hero2 = getHeroByIdPromise(heroData, 2)
     .then(hero => {
@@ -37,9 +55,6 @@ const heroError = getHeroByIdPromise(heroData, 20)
     .catch(error => {
         console.log(error);
     });
-
-
- */
 
 
 

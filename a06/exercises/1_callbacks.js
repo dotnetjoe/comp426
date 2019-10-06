@@ -13,17 +13,16 @@ export function getHeroByIdCallback(heroData, id, callback) {
   var thisHero;
 
   // Find the hero with the given id.
-  for (let i = 0; i < heroData.length; i++) {
-    if (heroData[i].id == id) {
-      thisHero = heroData[i];
-      break;
+  heroData.forEach( a => {
+    if(a.id == id){
+        thisHero = a;
     }
-  }
+  });
   
   // Wait 1.5 seconds (See SetTimeout on the writeup) and use the callback function
   // First param is the hero.
   setTimeout(() => {
-    callback;
+    callback(thisHero);
   }, 1500);
 }
 
