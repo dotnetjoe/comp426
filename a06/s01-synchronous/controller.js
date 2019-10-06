@@ -19,8 +19,9 @@ document.body.onload = async function () {
 
   // TODO: Write code to solve the maze here
   //  \/ \/ \/ \/ \/
-
-
-
+  token.moveSync('north');
+  token.moveSync('east');
+  token.moveSync('east');
+  token.moveSync('north');
   //  /\ /\ /\ /\ /\
 }
