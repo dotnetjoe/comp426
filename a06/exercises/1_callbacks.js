@@ -1,6 +1,5 @@
 import {heroData} from "./data";
 
-
 /**
  * Returns the hero with the given `id`. Should "return" by
  * using the callback after 1.5s (1500ms). The first parameter of the callback should
@@ -11,20 +10,29 @@ import {heroData} from "./data";
  * @param {function} callback - Callback function that should be used to return the data.
  */
 export function getHeroByIdCallback(heroData, id, callback) {
+  var thisHero;
 
   // Find the hero with the given id.
-
+  for (let i = 0; i < heroData.length; i++) {
+    if (heroData[i].id == id) {
+      thisHero = heroData[i];
+      break;
+    }
+  }
+  
   // Wait 1.5 seconds (See SetTimeout on the writeup) and use the callback function
   // First param is the hero.
-
+  setTimeout(() => {
+    callback;
+  }, 1500);
 }
 
 
-/*
-Below is code to help you get the right solution.
 
+// Below is code to help you get the right solution.
 getHeroByIdCallback(heroData, 2, (hero) => {
     console.log(`Found the hero with id ${hero.id}`, hero);
 });
 
-*/
+
+
