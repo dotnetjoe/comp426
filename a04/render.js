@@ -8,7 +8,6 @@
  */
 
 
-
 /**
  * Given a hero object (see data.js), this function generates a "card" showing
  *     the hero's name, information, and colors.
@@ -35,10 +34,9 @@ export const renderHeroCard = function(hero) {
                         <button class="button is-link is-small editbtn">Edit</button>
                     </div>
                 </div>
-            </div>`
+            </div>
+           `
 };
-
-
 
 /**
  * Given a hero object, this function generates a <form> which allows the
@@ -102,10 +100,9 @@ export const renderHeroEditForm = function(hero) {
                         </form>
                     </section>
                 </div>
-            </div>`
+            </div>
+           `
 };
-
-
 
 /**
  * Given an array of hero objects, this function converts the data into HTML and
@@ -113,29 +110,29 @@ export const renderHeroEditForm = function(hero) {
  * @param heroes  An array of hero objects to load (see data.js)
  */
 export const loadHeroesIntoDOM = function(heroes) {
+    $('body').addClass('has-background-info');
+
     // Grab a jQuery reference to the root HTML element
     const $root = $('#root');
 
-    // TODO: Generate the heroes using renderHeroCard()
-    let heroArr = [];
-    for (let i = 0;i < heroes.length; i++) {
-        heroArr[i] = renderHeroCard(heroArr[i]);
+    // Generate the heroes using renderHeroCard()
+    let heroArray = $('<div class="columns is-multiline is-centered is-mobile" />');
+    for (let i = 0; i < heroes.length; i++) {
+        heroArray.append(renderHeroCard(heroes[i]));
     }
 
-    // TODO: Append the hero cards to the $root element
-    $root.append(heroArr);
+    // Append the hero heroArray to the $root element
+    $root.addClass('container hero-body').append(heroArray);
 
     // Pick a hero from the list at random
     const randomHero = heroes[Math.floor(Math.random() * heroes.length)];
 
-    // TODO: Generate the hero edit form using renderHeroEditForm()
+    // Generate the hero edit form using renderHeroEditForm()
     const editForm = renderHeroEditForm(randomHero);
 
-    // TODO: Append the hero edit form to the $root element
+    // Append the hero edit form to the $root element
     $root.append(editForm);
 };
-
-
 
 /**
  * Use jQuery to execute the loadHeroesIntoDOM function after the page loads
