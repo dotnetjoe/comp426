@@ -26,7 +26,5 @@ document.body.onload = async function () {
     await token.moveAsync('north');
   };
   doMoves();
-
-
   //  /\ /\ /\ /\ /\
 }
