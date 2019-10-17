@@ -19,11 +19,6 @@ $root.on('click', '#new-game', function() {
 export const Game = function (size) {
     gameState.board = [];
     setUpNewGame(size);
-    var randomNumbers = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4];
-    var index = Math.floor(Math.random() * randomNumbers.length);
-    var randomNumber = randomNumbers[index];
-    var boardIndex = Math.floor(Math.random() * 16);
-    gameState.board[boardIndex] = randomNumber;
     loadGame(gameState);
 }
 
@@ -39,7 +34,6 @@ export const loadGame = function (gameState) {
     $root.append(menuContainer);
     $root.append(rowContainer);
 
-    randomTile(gameState.board);
     createTileRows(gameState.board, numberOfRows);
     loadMenu();
 };
@@ -50,7 +44,7 @@ export const loadMenu = function () {
 
     let scoreBoard = document.createElement('div');
     scoreBoard.id = "scoreboard";
-    scoreBoard.innerHTML = "SCORE: " + gameState.score;
+    scoreBoard.innerHTML = "Score: " + gameState.score;
 
     let newGame = document.createElement('button');
     newGame.id = "new-game";
@@ -76,29 +70,106 @@ export const createTileRows = function (tileNumbers, numberOfRows) {
             let tile = document.createElement('div');
             tile.classList.add("tile");
             //insert if statements to figure out number on tile and add class to tile accordingly
-            if(tileNumbers[x]==0){
-            }else{
+            if (tileNumbers[x] == 0) {
+                tile.style.backgroundColor = "rgba(238, 228, 218, 0.35)";
+            }
+            if (tileNumbers[x] == 2) {
                 tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#eee4da";
+                tile.style.paddingLeft = "60px";
+            }
+            if (tileNumbers[x] == 4) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#ede0c8";
+                tile.style.paddingLeft = "60px";
+            }
+            if (tileNumbers[x] == 8) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#f2b179";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "60px";
+            }
+            if (tileNumbers[x] == 16) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#f59563";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "45px";
+            }
+            if (tileNumbers[x] == 32) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#f67c5f";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "42px";
+            }
+            if (tileNumbers[x] == 64) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#f65e3b";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "40px";
+            }
+            if (tileNumbers[x] == 128) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#edcf72";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "26.5px";
+            }
+            if (tileNumbers[x] == 256) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#edcc61";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "24px";
+            }
+            if (tileNumbers[x] == 512) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#edc850";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "25px";
+            }
+            if (tileNumbers[x] == 1024) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#edc53f";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "8.5px";
+            }
+            if (tileNumbers[x] == 2048) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#edc22e";
+                tile.style.color = "#f9f6f2"
+                tile.style.paddingLeft = "8.5px";
+                tile.style.fontSize = "56px"
+            }
+            if (tileNumbers[x] == 4096) {
+                tile.innerText = tileNumbers[x];
+                tile.style.backgroundColor = "#3c3a32";
+                tile.style.color = "white";
+                tile.style.paddingLeft = "7px";
+                tile.style.fontSize = "56px"
             }
             tileRowContainer.append(tile);
             x++;
         }
     }
-
 };
 
 export const randomTile = function (board) {
     var randomNumbers = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4];
     var index = Math.floor(Math.random() * 10);
     var randomNumber = randomNumbers[index];
+    var x = 0;
     var boardIndex = Math.floor(Math.random() * 16);
-    while (board[boardIndex] != 0) {
-        boardIndex = Math.floor(Math.random() * 16);
+    while (x < 16) {
+        if (board[boardIndex] != 0) {
+            boardIndex = Math.floor(Math.random() * 16);
+        } else {
+            board[boardIndex] = randomNumber;
+            break;
+        }
+        x++;
     }
-    board[boardIndex] = randomNumber;
 };
 
 export const move = function (direction) {
+    var originalBoard = gameState.board.slice(0);
     var board = gameState.board;
     var rowLength = Math.sqrt(gameState.board.length);
     var columnLength = rowLength;
@@ -281,6 +352,12 @@ export const move = function (direction) {
             }
             break;
     }
+    for (var i = 0; i < gameState.board.length; i++) {
+        if (originalBoard[i] != board[i]) {
+            randomTile(gameState.board);
+            break;
+        }
+    }
     gameState.board = board;
     loadGame(gameState);
 }
@@ -295,6 +372,8 @@ export const setUpNewGame = function (size) {
     gameState.over = false;
     $(".menu-container").remove();
     $(".row-container").remove();
+    randomTile(gameState.board);
+    randomTile(gameState.board);
 }
 
 $(function () {

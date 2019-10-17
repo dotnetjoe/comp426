@@ -1,51 +1,56 @@
+body {
+    background-color: white;
+}
+
 .row-container {
-    width: 800px;
-    height:800px;
-    background-color: rgb(127, 127, 127);
-    border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 40px;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    width: 800px;
+    height: 800px;
+    background-color: gray;
+    border-radius: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 40px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 .tile {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 50px;
-    font-weight: 300;
+    background-color:  rgba(238, 228, 218, 0.35);
     float: left;
-    width: 124px;
-    height: 184px;
-    text-align: center;
-    line-height: 190px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin: 8px;
-    border-radius: 10px;
+    width: 124px;
+    height: 184px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 300;
+    float: left;
+    width: 124px;
+    height: 184px;
+    text-align: center;
+    line-height: 190px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 8px;
+    border-radius: 10px;
 }
 
 .menu-container {
-    display: flex;
-    margin-top: 20px;
-    height: 30px;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 30px;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #scoreboard {
-    margin-left: 60px;
-    font-size: 20px;
+    margin-left: 60px;
+    font-size: 20px;
 }
-
 .button {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    margin-left: 590px;
-    height: 40px;
-    width: 125px;
-    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin-left: 590px;
+    height: 40px;
+    width: 125px;
+    border-radius: 10px;
 }
