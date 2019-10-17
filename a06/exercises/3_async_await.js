@@ -50,9 +50,6 @@ async function run() {
     console.log(error);
   }
 } 
-<<<<<<< HEAD
-run();
-=======
 run();
 
 
@@ -61,4 +58,3 @@ run();
 
 
 
->>>>>>> 714cd017f9f7a74dd8fdba039428dd68c030ba70
