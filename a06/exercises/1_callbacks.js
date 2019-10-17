@@ -40,6 +40,3 @@ export function getHeroByIdCallback(heroData, id, callback) {
 getHeroByIdCallback(heroData, 2, (hero) => {
     console.log(`Found the hero with id ${hero.id}`, hero);
 });
-
-
-

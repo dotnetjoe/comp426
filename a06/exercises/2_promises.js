@@ -57,8 +57,3 @@ const heroError = getHeroByIdPromise(heroData, 20)
     .catch(error => {
         console.log(error);
     });
-
-
-
-
-
