@@ -2,7 +2,6 @@ import { heroData } from "./data";
 import { getHeroByIdAsync } from "./3_async_await";
 const { performance } = require('perf_hooks');
 
-
 /*
  * In order to complete this section, you must have already finished the
  *   previous section (3_async_await.js).
@@ -20,7 +19,6 @@ export async function getTwoHeroes(heroData, hero1Id, hero2Id) {
   let hero2 = await getHeroByIdAsync(heroData, hero2Id);
   return { hero1, hero2 };
 }
-
 
 /**
  * This function should do the same thing as the `getTwoHeroes` but return in

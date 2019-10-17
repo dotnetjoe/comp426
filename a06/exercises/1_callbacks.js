@@ -36,8 +36,6 @@ export function getHeroByIdCallback(heroData, id, callback) {
   }, 1500);
 }
 
-
-
 // Below is code to help you get the right solution.
 getHeroByIdCallback(heroData, 2, (hero) => {
     console.log(`Found the hero with id ${hero.id}`, hero);
