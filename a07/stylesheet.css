@@ -1,56 +1,26 @@
-body {
-    background-color: white;
+body{
+    background: black;
+}
+.center {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20px;
 }
 
-.row-container {
-    width: 800px;
-    height: 800px;
-    background-color: gray;
-    border-radius: 10px;
-    border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 40px;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+.rainbow-text {
+    background-image: linear-gradient(to right, #f22, #f2f 14.25%, #22f 28.5%, #2ff 42.75%, #2f2 57%, #2f2 71.25%, #ff2 85.5%, #f22);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-.tile {
-    background-color:  rgba(238, 228, 218, 0.35);
-    float: left;
-    width: 124px;
-    height: 184px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 300;
-    float: left;
-    width: 124px;
-    height: 184px;
-    text-align: center;
-    line-height: 190px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin: 8px;
-    border-radius: 10px;
+h1 {
+    font-family: san -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
-.menu-container {
-    display: flex;
-    margin-top: 20px;
-    height: 30px;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-#scoreboard {
-    margin-left: 60px;
-    font-size: 20px;
-}
-.button {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    margin-left: 590px;
-    height: 40px;
-    width: 125px;
-    border-radius: 10px;
+      
+p {
+    font-family: san -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
 }
