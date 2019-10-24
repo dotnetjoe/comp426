@@ -8,7 +8,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "esm": "^3.2.25",
+    "jquery": "^3.4.1",
     "keypress": "^0.2.1"
   },
   "description": ""
