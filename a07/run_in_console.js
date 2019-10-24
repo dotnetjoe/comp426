@@ -15,7 +15,7 @@ console.log(game.toString());
 
 game.onMove(gameState => {
     console.log(game.toString());
-    // console.log(game.gameState);
+    console.log(game.gameState);
 });
 
 game.onWin(gameState => {
