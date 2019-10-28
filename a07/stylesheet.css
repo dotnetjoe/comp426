@@ -1,26 +1,201 @@
-body{
-    background: black;
+body #header {
+    height: 10vh;
+    background-color: black;
 }
-.center {
-    display: flex;
-    align-items: center;
+
+#header div.header-text {
     text-align: center;
+    color: white;
+    font-size: 8vmin;
+}
+
+#game-view {
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 85vh;
+    width: 100%;
+    background-color: black;
+}
+
+#scoreboard {
+    height: 10%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 20px;
+    width: 60vmin;
 }
 
-.rainbow-text {
-    background-image: linear-gradient(to right, #f22, #f2f 14.25%, #22f 28.5%, #2ff 42.75%, #2f2 57%, #2f2 71.25%, #ff2 85.5%, #f22);
-    -webkit-background-clip: text;
-    color: transparent;
+#score-panel {
+    font-size: 2vmin;
+    margin-left: 8px;
 }
 
-h1 {
-    font-family: san -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+#score-panel p {
+    text-align: center;
 }
-      
-p {
-    font-family: san -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 20px;
+
+.button {
+    font-size: 2vmin;
+    width: 13vmin;
+    border-radius: 8px;
+}
+
+#newgame-button {
+    float: right;
+    margin-right: 8px;
+}
+
+#game-pro {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    height: 74%;
+}
+
+#game-board {
+    position: relative;
+    background-color: #7e7e7e;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60vmin;
+    width: 60vmin;
+    border-radius: 10px;
+}
+
+.game-tile {
+    position: absolute;
+    height: 13vmin;
+    width: 13vmin;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 5vmin;
+    border-color: white;
+}
+
+.empty-tile {
+    background-color: #a0a0a0;
+}
+
+.tile-2 {
+    background-color: #ffffff;
+    color: black;
+}
+
+.tile-4 {
+    background-color: #eaeaea;
+    color: black;
+}
+
+.tile-8 {
+    background-color: #d4d4d4;
+    color: black;
+}
+
+.tile-16 {
+    background-color: #bfbfbf;
+    color: black;
+}
+
+.tile-32 {
+    background-color: #aaaaaa;
+    color: black;
+}
+
+.tile-64 {
+    background-color: #959595;
+    color: black;
+}
+
+.tile-128 {
+    background-color: #6a6a6a;
+    color: white;
+}
+
+.tile-256 {
+    background-color: #555555;
+    color: white;
+}
+
+.tile-512 {
+    background-color: #404040;
+    color: white;
+}
+
+.tile-1024 {
+    background-color: #2b2b2b;
+    color: white;
+}
+
+.tile-2048 {
+    background-color: #151515;
+    color: white;
+}
+
+.tile-4096 {
+    background-color: #000000;
+    color: white;
+}
+
+.tile-8192 {
+    background-color: #000000;
+    color: white;
+}
+
+.tile-16384 {
+    background-color: #ffffff;
+    color: white;
+}
+
+.tile-32768 {
+    background-color: #eaeaea;
+    color: white;
+}
+
+.tile-65536 {
+    background-color: #d4d4d4;
+    color: white;
+}
+
+.tile-131072 {
+    background-color: #bfbfbf;
+    color: white;
+}
+
+#game-message {
+    height: 16%;
+    font-size: 2vmin;
+    text-align: center;
+}
+
+#win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#lose-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#credit {
+    text-align: right;
+    height: 15%;
+    line-height: 5vh;
+    font-size: 2vmin;
+    padding-right: 3%;
+    background-color: #000000;
+}
+
+.centerall {
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
