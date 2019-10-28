@@ -2,380 +2,346 @@
 Add your code for Game here
  */
 
-var gameState = {}
+export default class Game {
+    constructor(size) {
+        this.size = size;
+        this.winHandlers = [];
+        this.moveHandlers = [];
+        this.loseHandlers = [];
+        this.setupNewGame();
 
-document.addEventListener("keyup", function (event) {
-    $(".menu-container").remove();
-    $(".row-container").remove();
-    const key = event.key;
-    move(key);
-});
+        this.winEvent = () => {
+            this.winHandlers.forEach((callback) => {callback(this.gameState);})
+        }
+        this.loseEvent = () => {
+            this.loseHandlers.forEach((callback) => {callback(this.gameState);})
+        }
+        this.moveEvent = () => {
+            this.moveHandlers.forEach((callback) => {callback(this.gameState);})
+        }
 
-export const $root = $('#root');
-$root.on('click', '#new-game', function() {
-    Game(4);
-});
+    }
 
-export const Game = function (size) {
-    gameState.board = [];
-    setUpNewGame(size);
-    loadGame(gameState);
-}
+    setupNewGame() {
+        this.gameState = {
+            board: [],
+            score: 0,
+            won: false,
+            over: false
+        }
 
-export const loadGame = function (gameState) {
-    var numberOfRows = Math.sqrt(gameState.board.length);
+        for (let i = 0; i < this.size * this.size; i++) {
+            this.gameState.board.push(0)
+        }
+        this.createTile();
+        this.createTile();
+    }
 
-    let rowContainer = document.createElement('div');
-    rowContainer.classList.add("row-container");
+    loadGame(gameState) {
+        this.gameState = gameState;
+        this.size = Math.round(Math.sqrt(gameState.board.length));
+    }
 
-    let menuContainer = document.createElement('div');
-    menuContainer.classList.add("menu-container");
-
-    $root.append(menuContainer);
-    $root.append(rowContainer);
-
-    createTileRows(gameState.board, numberOfRows);
-    loadMenu();
-};
-
-export const loadMenu = function () {
-    var div = document.getElementsByClassName("menu-container");
-    var requiredDiv = div[0];
-
-    let scoreBoard = document.createElement('div');
-    scoreBoard.id = "scoreboard";
-    scoreBoard.innerHTML = "Score: " + gameState.score;
-
-    let newGame = document.createElement('button');
-    newGame.id = "new-game";
-    newGame.classList.add("button", "is-primary");
-    newGame.innerHTML = "NEW GAME";
-
-    requiredDiv.append(scoreBoard);
-    requiredDiv.append(newGame);
-}
-
-
-
-export const createTileRows = function (tileNumbers, numberOfRows) {
-    var x = 0;
-    var tilesPerRow = numberOfRows;
-    var div = document.getElementsByClassName("row-container");
-    var requiredDiv = div[0];
-    for (var i = 0; i < numberOfRows; i++) {
-        let tileRowContainer = document.createElement('div');
-        tileRowContainer.classList.add("tile-row-container");
-        requiredDiv.append(tileRowContainer);
-        for (var t = 0; t < tilesPerRow; t++) {
-            let tile = document.createElement('div');
-            tile.classList.add("tile");
-            //insert if statements to figure out number on tile and add class to tile accordingly
-            if (tileNumbers[x] == 0) {
-                tile.style.backgroundColor = "rgba(238, 228, 218, 0.35)";
+    move(direction) {
+        if (this.moveBoard(direction)) {
+            this.createTile();
+            this.moveEvent();
+            this.gameState.over = this.hasLost();
+            if (this.gameState.over) {
+                this.loseEvent();
             }
-            if (tileNumbers[x] == 2) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#eee4da";
-                tile.style.paddingLeft = "60px";
+            if (this.gameState.won) {
+                this.winEvent();
             }
-            if (tileNumbers[x] == 4) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#ede0c8";
-                tile.style.paddingLeft = "60px";
-            }
-            if (tileNumbers[x] == 8) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#f2b179";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "60px";
-            }
-            if (tileNumbers[x] == 16) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#f59563";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "45px";
-            }
-            if (tileNumbers[x] == 32) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#f67c5f";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "42px";
-            }
-            if (tileNumbers[x] == 64) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#f65e3b";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "40px";
-            }
-            if (tileNumbers[x] == 128) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#edcf72";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "26.5px";
-            }
-            if (tileNumbers[x] == 256) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#edcc61";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "24px";
-            }
-            if (tileNumbers[x] == 512) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#edc850";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "25px";
-            }
-            if (tileNumbers[x] == 1024) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#edc53f";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "8.5px";
-            }
-            if (tileNumbers[x] == 2048) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#edc22e";
-                tile.style.color = "#f9f6f2"
-                tile.style.paddingLeft = "8.5px";
-                tile.style.fontSize = "56px"
-            }
-            if (tileNumbers[x] == 4096) {
-                tile.innerText = tileNumbers[x];
-                tile.style.backgroundColor = "#3c3a32";
-                tile.style.color = "white";
-                tile.style.paddingLeft = "7px";
-                tile.style.fontSize = "56px"
-            }
-            tileRowContainer.append(tile);
-            x++;
         }
     }
-};
 
-export const randomTile = function (board) {
-    var randomNumbers = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4];
-    var index = Math.floor(Math.random() * 10);
-    var randomNumber = randomNumbers[index];
-    var x = 0;
-    var boardIndex = Math.floor(Math.random() * 16);
-    while (x < 16) {
-        if (board[boardIndex] != 0) {
-            boardIndex = Math.floor(Math.random() * 16);
+    toString() {
+        let gameString = "Current Board: \n[";
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                gameString += "" + this.gameState.board[i * this.size + j] + ", ";
+            }
+            gameString += "\n ";
+        }
+
+        return gameString.slice(0, -4) + "]";
+    }
+
+    onMove(callback) {
+        this.moveHandlers.push(callback);
+    }
+
+    onWin(callback) {
+        this.winHandlers.push(callback);
+    }
+
+    onLose(callback) {
+        this.loseHandlers.push(callback);
+    }
+
+    getGameState() {
+        return this.gameState;
+    }
+
+    moveBoard(direction) {
+        let moved = false;
+
+        switch (direction) {
+            case 'right':
+                moved = moved || this.moveRows('right');
+                break;
+            case 'left':
+                moved = moved || this.moveRows('left');
+                break;
+            case 'up':
+                moved = moved || this.moveColumns('up');
+                break;
+            case 'down':
+                moved = moved || this.moveColumns('down');
+                break;
+        }
+        return moved;
+    }
+
+    moveRows(direction) {
+        let board = this.gameState.board;
+        let moved = false;
+        if (direction == 'left') {
+            for (let i = 0; i < this.size; i++) { // Each row
+                // Run through each cell in each row,
+                // Keep track of which cells have already been merged,
+                // And move cells as needed.
+                let mergable = 0;
+                for (let j = 0; j < this.size; j++) { // Each column/row
+                    let currentIndex = i * this.size + j;
+
+                    if (board[currentIndex] == 0) {
+                        continue;
+                    }
+                    // If cell not empty, look at all cells before this
+                    for (let k = j - 1; k >= mergable; k--) {
+                        if (board[i * this.size + k] == 0) {
+                            // swap
+                            board[i * this.size + k] = board[currentIndex];
+                            board[currentIndex] = 0;
+                            currentIndex -= 1;
+                            moved = true;
+                            continue;
+                        } else if (board[i * this.size + k] == board[currentIndex]) {
+                            // Merge cells, move onto next in row
+                            board[i * this.size + k] = board[i * this.size + k] * 2;
+                            board[currentIndex] = 0;
+                            this.gameState.score += board[i * this.size + k];
+
+                            if (board[i * this.size + k] == 2048) {
+                                this.gameState.won = true;
+                            }
+                            mergable += 1;
+                            moved = true;
+                            break;
+                        } else {
+                            // Cannot merge cells, move onto next in row
+                            mergable += 1;
+                            break;
+                        }
+                    }
+                }
+            }
         } else {
-            board[boardIndex] = randomNumber;
-            break;
+            for (let i = 0; i < this.size; i++) { // Each row
+                let mergable = this.size - 1;
+
+                for (let j = this.size - 1; j >= 0; j--) { // Each column/row
+                    let currentIndex = i * this.size + j;
+
+                    if (board[currentIndex] == 0) {
+                        continue;
+                    }
+                    
+                    for (let k = j + 1; k <= mergable; k++) {
+                        if (board[i * this.size + k] == 0) {
+                            board[i * this.size + k] = board[currentIndex];
+                            board[currentIndex] = 0;
+                            currentIndex += 1;
+                            moved = true;
+                            continue;
+                        } else if (board[i * this.size + k]
+                                    == board[currentIndex]) {
+                            board[i * this.size + k] = board[i * this.size + k] * 2;
+                            board[currentIndex] = 0;
+                            this.gameState.score += board[i * this.size + k];
+
+                            if (board[i * this.size + k] == 2048) {
+                                this.gameState.won = true;
+                            }
+                            mergable -= 1;
+                            moved = true;
+                            break;
+                        } else {
+                            mergable -= 1;
+                            break;
+                        }
+                    }
+                }
+            }
         }
-        x++;
+
+        return moved;
     }
-};
 
-export const move = function (direction) {
-    var originalBoard = gameState.board.slice(0);
-    var board = gameState.board;
-    var rowLength = Math.sqrt(gameState.board.length);
-    var columnLength = rowLength;
+    moveColumns(direction) {
+        let board = this.gameState.board;
+        let moved = false;
+        if (direction == 'up') {
+            for (let j = 0; j < this.size; j++) { // Each column
+                // Run through each cell in each row,
+                // Keep track of which cells have already been merged,
+                // And move cells as needed.
+                let mergable = 0;
+                for (let i = 0; i < this.size; i++) { // Each row/column
+                    let currentIndex = i * this.size + j;
+                    // Ignore cell if empty
+                    if (board[currentIndex] == 0) {
+                        continue;
+                    }
+                    // If cell not empty, look at all cells before this
+                    for (let k = i - 1; k >= mergable; k--) {
+                        if (board[k*this.size + j] == 0) {
+                            // swap
+                            board[k*this.size + j] = board[currentIndex];
+                            board[currentIndex] = 0;
+                            currentIndex -= this.size;
+                            moved = true;
+                            continue;
+                        } else if (board[k*this.size + j]
+                                    == board[currentIndex]) {
+                            // Merge cells, move onto next in column
+                            board[k*this.size + j] = board[k*this.size + j] * 2;
+                            board[currentIndex] = 0;
+                            this.gameState.score += board[k*this.size + j];
 
-    switch (direction) {
-        case "ArrowLeft":
-            var x = 0;
-            var t = 1;
-            while (x < board.length) {
-                var i = 0;
-                var initialIndex = x;
-                var tilesAboveZero = 0;
-                var indexWithNumbers = [];
-                while (i < rowLength) {
-                    if (board[x] != 0) {
-                        tilesAboveZero++;
-                        indexWithNumbers.push(x);
+                            if (board[k*this.size + j] == 2048) {
+                                this.gameState.won = true;
+                            }
+                            mergable += 1;
+                            moved = true;
+                            break;
+                        } else {
+                            // Cannot merge cells, move onto next in column
+                            mergable += 1;
+                            break;
+                        }
                     }
-                    if (board[x] == board[x + 3] && board[x + 2] == 0 && board[x + 1] == 0 && x + 3 < rowLength * t) {
-                        board[x] = board[x] * 2;
-                        board[x + 3] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x + 2] && board[x + 1] == 0 && x + 2 < rowLength * t) {
-                        board[x] = board[x] * 2;
-                        board[x + 2] = 0;
-                        gameState.score = gameState.score + board[x];
-
-                    }
-                    if (board[x] == board[x + 1] && x + 1 < rowLength * t) {
-                        board[x] = board[x] * 2;
-                        board[x + 1] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    i++;
-                    x++;
-
-                }
-                t++;
-                for (var y = 0; y < tilesAboveZero; y++) {
-                    var tileIndex = indexWithNumbers[y];
-                    board[initialIndex] = board[tileIndex];
-                    if (initialIndex != tileIndex) {
-                        board[tileIndex] = 0;
-                    }
-                    initialIndex++;
                 }
             }
-            break;
-        case "ArrowRight":
-            var x = 15;
-            var t = 3;
-            while (x > 0) {
-                var i = 0;
-                var initialIndex = x;
-                var tilesAboveZero = 0;
-                var indexWithNumbers = [];
-                while (i < rowLength) {
-                    if (board[x] != 0) {
-                        tilesAboveZero++;
-                        indexWithNumbers.push(x);
+        } else {
+            for (let j = 0; j < this.size; j++) { // Each column
+                let mergable = this.size - 1;
+                for (let i = this.size - 1; i >= 0; i--) { // Each row/column
+                    let currentIndex = i * this.size + j;
+                    if (board[currentIndex] == 0) {
+                        continue;
                     }
-                    if (board[x] == board[x - 3] && board[x - 2] == 0 && board[x - 1] == 0 && x - 3 >= rowLength * t) {
-                        board[x] = board[x] * 2;
-                        board[x - 3] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x - 2] && board[x - 1] == 0 && x - 2 >= rowLength * t) {
-                        board[x] = board[x] * 2;
-                        board[x - 2] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x - 1] && x - 1 >= rowLength * t) {
-                        board[x] = board[x - 1] * 2;
-                        board[x - 1] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    i++;
-                    x--;
+                    for (let k = i + 1; k <= mergable; k++) {
+                        if (board[k*this.size + j] == 0) {
+                            // swap
+                            board[k*this.size + j] = board[currentIndex];
+                            board[currentIndex] = 0;
+                            currentIndex += this.size;
+                            moved = true;
+                            continue;
+                        } else if (board[k*this.size + j]
+                                    == board[currentIndex]) {
+                            board[k*this.size + j] = board[k*this.size + j] * 2;
+                            board[currentIndex] = 0;
+                            this.gameState.score += board[k*this.size + j];
 
-                }
-                t--;
-                for (var y = 0; y < tilesAboveZero; y++) {
-                    var tileIndex = indexWithNumbers[y];
-                    board[initialIndex] = board[tileIndex];
-                    if (initialIndex != tileIndex) {
-                        board[tileIndex] = 0;
+                            if (board[k*this.size + j] == 2048) {
+                                this.gameState.won = true;
+                            }
+                            mergable -= 1;
+                            moved = true;
+                            break;
+                        } else {
+                            mergable -= 1;
+                            break;
+                        }
                     }
-                    initialIndex--;
                 }
             }
-            break;
-        case "ArrowUp":
-            var t = 0;
-            var v = 0;
-            while (v < board.length) {
-                var i = 0;
-                var x = t;
-                var initialIndex = t;
-                var tilesAboveZero = 0;
-                var indexWithNumbers = [];
-                while (i < columnLength) {
-                    if (board[x] != 0) {
-                        tilesAboveZero++;
-                        indexWithNumbers.push(x);
-                    }
-                    if (board[x] == board[x + (rowLength * 3)] && board[x + (rowLength * 2)] == 0 && board[x + (rowLength * 1)] == 0) {
-                        board[x] = board[x] * 2;
-                        board[x + (rowLength * 3)] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x + (rowLength * 2)] && board[x + rowLength] == 0) {
-                        board[x] = board[x] * 2;
-                        board[x + (rowLength * 2)] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x + rowLength]) {
-                        board[x] = board[x] * 2;
-                        board[x + rowLength] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    i++;
-                    x = x + 4;
-                    v++;
-                }
-                for (var y = 0; y < tilesAboveZero; y++) {
-                    var tileIndex = indexWithNumbers[y];
-                    board[initialIndex] = board[tileIndex];
-                    if (initialIndex != tileIndex) {
-                        board[tileIndex] = 0;
-                    }
-                    initialIndex = initialIndex + 4;
-                }
-                t++;
-            }
-            break;
-        case "ArrowDown":
-            var t = 15;
-            var v = 0;
-            while (v < board.length) {
-                var i = 0;
-                var x = t;
-                var initialIndex = t;
-                var tilesAboveZero = 0;
-                var indexWithNumbers = [];
-                while (i < columnLength) {
-                    if (board[x] != 0) {
-                        tilesAboveZero++;
-                        indexWithNumbers.push(x);
-                    }
-                    if (board[x] == board[x - (rowLength * 3)] && board[x - (rowLength * 2)] == 0 && board[x - (rowLength * 1)] == 0) {
-                        board[x] = board[x] * 2;
-                        board[x - (rowLength * 3)] = 0;
-                        gameState.score = gameState.score + board[x];
+        }
 
-                    }
-                    if (board[x] == board[x - (rowLength * 2)] && board[x - rowLength] == 0) {
-                        board[x] = board[x] * 2;
-                        board[x - (rowLength * 2)] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    if (board[x] == board[x - rowLength]) {
-                        board[x] = board[x] * 2;
-                        board[x - rowLength] = 0;
-                        gameState.score = gameState.score + board[x];
-                    }
-                    i++;
-                    x = x - 4;
-                    v++;
-                }
-                for (var y = 0; y < tilesAboveZero; y++) {
-                    var tileIndex = indexWithNumbers[y];
-                    board[initialIndex] = board[tileIndex];
-                    if (initialIndex != tileIndex) {
-                        board[tileIndex] = 0;
-                    }
-                    initialIndex = initialIndex - 4;
-                }
-                t--;
-            }
-            break;
+        return moved;
     }
-    for (var i = 0; i < gameState.board.length; i++) {
-        if (originalBoard[i] != board[i]) {
-            randomTile(gameState.board);
-            break;
+
+    hasLost() {
+        // First check that the board is full
+        for (let i = 0; i < this.gameState.board.length; i++) {
+            if (this.gameState.board[i] == 0) {
+                return false;
+            }
+        }
+        
+        // Check for horizontal and vertical tile matches
+        for (let i = 0; i < this.size; i++) { // Rows
+            // Check first two cells independently, for efficiency
+            if (this.gameState.board[i * this.size]
+                == this.gameState.board[i * this.size + 1]) {
+                    return false;
+            }
+
+            for (let j = 1; j < this.size - 1; j++) {
+                let center = this.gameState.board[i * this.size + j];
+                let right = this.gameState.board[i * this.size + j + 1]; 
+                if (center == right) {
+                    return false;
+                }
+            }
+        }
+        
+        for (let j = 0; j < this.size; j++) { // Columns
+            if (this.gameState.board[j]
+                == this.gameState.board[j + this.size]) {
+                    return false;
+            }
+
+            for (let i = 1; i < this.size - 1; i++) {
+                let center = this.gameState.board[i * this.size + j];
+                let bottom = this.gameState.board[(i+1)*this.size + j];
+                if (center == bottom) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    newTilelocation() {
+        let randomArray = []
+        for (let i = 0; i < this.size * this.size; i++) {
+            if (this.gameState.board[i] == 0) {
+                randomArray.push(i)
+            }
+        }
+
+        for (let i = 0; i < randomArray.length; i++) {
+            let changeLocation = i + Math.floor(Math.random() * (randomArray.length - i));
+            let temp = randomArray[i];
+            randomArray[i] = randomArray[changeLocation];
+            randomArray[changeLocation] = temp;
+        }
+
+        return randomArray;
+    }
+
+    createTile() {
+        let tileLocation = this.newTilelocation()[0];
+        if (Math.random() < 0.9) {
+            this.gameState.board[tileLocation] = 2;
+        } else {
+            this.gameState.board[tileLocation] = 4;
         }
     }
-    gameState.board = board;
-    loadGame(gameState);
 }
-
-export const setUpNewGame = function (size) {
-    var numberOfTiles = size * size;
-    for (var i = 0; i < numberOfTiles; i++) {
-        gameState.board[i] = 0;
-    }
-    gameState.score = 0;
-    gameState.won = false;
-    gameState.over = false;
-    $(".menu-container").remove();
-    $(".row-container").remove();
-    randomTile(gameState.board);
-    randomTile(gameState.board);
-}
-
-$(function () {
-    Game(4);
-});
