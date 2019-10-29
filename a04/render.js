@@ -106,7 +106,7 @@ export const renderHeroEditForm = function(hero) {
 
 /**
  * Given an array of hero objects, this function converts the data into HTML and
- *     loads it into the DOM.
+ *     loads it into the DOM.       
  * @param heroes  An array of hero objects to load (see data.js)
  */
 export const loadHeroesIntoDOM = function(heroes) {
