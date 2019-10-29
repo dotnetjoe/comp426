@@ -27,7 +27,7 @@ export async function getTwoHeroes(heroData, hero1Id, hero2Id) {
  *
  * This function should return a single object with the following structure:
  *   {
- *     hero1: { ... hero data ... },
+ *     hero1: { ... hero data ... },    
  *     hero2: { ... hero data ... }
  *   }
  *
