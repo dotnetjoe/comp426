@@ -150,7 +150,7 @@ export const handleEditButtonPress = function (event) {
 
 /**
  * Handles the JavaScript event representing a user clicking on the "cancel"
- *     button for a particular hero.
+ *     button for a particular hero.        
  * @param event  The JavaScript event that is being handled
  */
 export const handleCancelButtonPress = function (event) {
