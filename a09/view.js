@@ -2,7 +2,7 @@ function birdhouse() {
     return $(`
     <div id="root">
         <section id="header"> 
-            <div>Twitter 426 <i class="fab fa-twitter"></i> Dark Mode</div>
+            <div><i class="fab fa-twitter"></i> Twitter 426</div>
             <div class="buttons has-addons is-centered">
                 <button class="refresh_button button is-small is-light is-info is-outlined is-rounded">  Refresh  </button>
                 <button class="makeNewPost_button button is-small is-light is-info is-outlined is-right is-rounded"> New Tweet </button>
